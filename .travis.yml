@@ -14,3 +14,13 @@ after_success:
   - docker build -t kapp96/multi-nginx ./nginx
   - docker build -t kapp96/multi-server ./server
   - docker build -t kapp96/multi-worker ./worker
+  # login to docker cli
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  
+  # take those images and push them to docker hub
+
+  - docker push kapp96/multi-client
+  - docker push kapp96/multi-nginx
+  - docker push kapp96/multi-server
+  - docker push kapp96/multi-worker
